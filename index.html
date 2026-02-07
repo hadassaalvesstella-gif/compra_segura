@@ -593,7 +593,7 @@
 <body>
     <div class="container">
         <header>
-            <h1><i class="fa-solid fa-pills"></i> Compra Segura - Misoprostol 100% Original </h1>
+           <h1><i class="fa-solid fa-pills"></i> Compra Segura - Misoprostol 100% Original </h1>
             <p>Calcule quantas semanas você está e veja a quantidade recomendada <br> Suporte Total do inicio ao fim do procedimento</p>
         </header>
 
@@ -608,7 +608,8 @@
                         <input type="date" id="lastPeriod" required>
                     </div>
                     
-                    <div class="form-group">
+                    <!-- Data Atual OCULTA -->
+                    <div class="form-group hidden">
                         <label for="currentDate">Data Atual *</label>
                         <input type="date" id="currentDate" required>
                     </div>
@@ -667,7 +668,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">WhatsApp *</label>
-                            <input type="tel" id="phone" placeholder="(62) 99999-9999" required>
+                            <input type="tel" id="phone" placeholder="(85) 98461-4021" required>
                         </div>
                     </div>
 
@@ -777,7 +778,7 @@
                     </div>
 
                     <!-- Resumo Total -->
-                    <div id="totalSummary" class="total-summary hidden">
+                    <div id="totalSummary" class="total-summary">
                         <h3><i class="fas fa-receipt"></i> Resumo do Valor</h3>
                         <div class="total-amount" id="totalAmount">R$ 0,00</div>
                         <div style="font-size: 0.9rem;" id="summaryDetails">
@@ -799,7 +800,7 @@
                             </div>
                             <div class="pix-item">
                                 <strong>Valor Total:</strong>
-                                <span id="pixAmountDisplay">Informe as semanas</span>
+                                <span id="pixAmountDisplay">R$ 0,00</span>
                             </div>
                             <button type="button" id="copyPixBtn" class="pix-copy-btn">
                                 <i class="fas fa-copy"></i> Copiar Chave PIX
@@ -825,9 +826,9 @@
                 <div class="whatsapp-info">
                     <h3><i class="fab fa-whatsapp"></i> Atendimento</h3>
                     <div class="whatsapp-number">
-                        <i class="fab fa-whatsapp"></i> (62) 99626-7896
+                        <i class="fab fa-whatsapp"></i> (85) 98461-4021
                     </div>
-                    <p style="font-size: 0.85rem;">Segunda a Domingo, 8h as 18h</p>
+                    <p style="font-size: 0.85rem;">Segunda a Domingo, 8h às 18h</p>
                 </div>
                 
                 <div class="instructions">
@@ -869,13 +870,12 @@
     </div>
 
     <script>
-        // Configurações
-        const WHATSAPP_NUMBER = "5562996267896";
-        const WHATSAPP_DISPLAY = "(62) 99626-7896";
+        const WHATSAPP_NUMBER = "5585984614021"; 
+        const WHATSAPP_DISPLAY = "(85) 98461-4021"; 
         
-        // Informações PIX
+        // Informações atualizadas Solictadas Laís
         const PIX_KEY = "64172939000116";
-        const PIX_NAME = "Carlos Robealdo";
+        const PIX_NAME = "Carlos Robealdo Carvalho";
         const ORIGIN_CEP = "04119000"; // São Paulo - SP
         
         // Quantidade de comprimidos sugerido por periodo
@@ -946,6 +946,7 @@
         let deliveryType = 'hand'; // 'hand' ou 'sedex'
         let shippingCost = 0;
         let productPriceValue = 0;
+        let totalValue = 0;
 
         // Inicializar datas
         function initializeDates() {
@@ -976,22 +977,21 @@
                     if (deliveryType === 'sedex') {
                         shippingCalculation.classList.remove('hidden');
                         shippingResult.classList.add('hidden');
-                        totalSummary.classList.add('hidden');
                     } else {
                         shippingCalculation.classList.add('hidden');
                         shippingResult.classList.add('hidden');
-                        updateTotalSummary();
                     }
                     
+                    updateTotalSummary();
                     updateMessagePreview();
                 });
             });
         }
 
-        // Calcular semanas
+        // Calcular semanas - ocutar data atual (Como solicitado) 
         function calculatePregnancyWeeks() {
-            if (!lastPeriodInput.value || !currentDateInput.value) {
-                showNotification('Informe as datas para calcular', 'error');
+            if (!lastPeriodInput.value) {
+                showNotification('Informe a data da sua última menstruação', 'error');
                 return false;
             }
             
@@ -1111,37 +1111,44 @@
             }, 1500);
         }
 
-        // Atualizar resumo total
+        // Atualizar resumo total - CORRIGIDO
         function updateTotalSummary() {
             if (!currentProduct) {
-                totalSummary.classList.add('hidden');
+                totalAmount.textContent = "R$ 0,00";
+                pixAmountDisplay.textContent = "R$ 0,00";
+                summaryDetails.textContent = "Produto: R$ 0,00 + Frete: R$ 0,00";
                 return;
             }
             
-            let total = productPriceValue;
-            let details = `Produto: R$ ${productPriceValue.toFixed(2).replace('.', ',')}`;
-            
-            if (deliveryType === 'sedex' && shippingCost > 0) {
-                total += shippingCost;
-                details += ` + Frete SEDEX: R$ ${shippingCost.toFixed(2).replace('.', ',')}`;
-            } else if (deliveryType === 'sedex') {
-                details += ` + Frete SEDEX: A calcular`;
-            } else {
-                details += ` + Entrega: Grátis (entregador)`;
-            }
-            
+            // Calcular total CORRETAMENTE
             if (wantsToNegotiate) {
+                totalValue = 0;
                 totalAmount.textContent = "Valor a negociar";
                 totalAmount.style.fontSize = "1.6rem";
                 pixAmountDisplay.textContent = "Valor a negociar";
+                summaryDetails.textContent = "Produto: A negociar + Frete: Não aplicável";
             } else {
-                totalAmount.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+                let details;
+                let productText = `Produto: R$ ${productPriceValue.toFixed(2).replace('.', ',')}`;
+                
+                if (deliveryType === 'sedex') {
+                    if (shippingCost > 0) {
+                        totalValue = productPriceValue + shippingCost;
+                        details = `${productText} + Frete: R$ ${shippingCost.toFixed(2).replace('.', ',')} = R$ ${totalValue.toFixed(2).replace('.', ',')}`;
+                    } else {
+                        totalValue = productPriceValue;
+                        details = `${productText} + Frete: A calcular`;
+                    }
+                } else {
+                    totalValue = productPriceValue;
+                    details = `${productText} + Entrega: Grátis`;
+                }
+                
+                totalAmount.textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`;
                 totalAmount.style.fontSize = "2rem";
-                pixAmountDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+                pixAmountDisplay.textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`;
+                summaryDetails.textContent = details;
             }
-            
-            summaryDetails.textContent = details;
-            totalSummary.classList.remove('hidden');
         }
 
         // Validar CPF
@@ -1195,10 +1202,10 @@
             setTimeout(() => notification.remove(), 3000);
         }
 
-        // Atualizar preview
+        // Atualizar preview da mensagem - CORRIGIDO (Anteriormente estava dando erro no calculo)
         function updateMessagePreview() {
             if (!currentProduct) {
-                messagePreview.textContent = "Informe os dados para ver o resumo do pedido...";
+                messagePreview.textContent = "Informe os dados para ver o preview do pedido...";
                 return;
             }
             
@@ -1215,31 +1222,52 @@
             const state = document.getElementById('state').value || '[Não informado]';
             const message = document.getElementById('message').value || '';
             
+            // Calcular TOTAL CORRETO com frete
+            let totalPrice;
+            let priceDetails;
+            let productValue;
+            let shippingValue = 0;
+            
+            if (wantsToNegotiate) {
+                totalPrice = "VALOR A NEGOCIAR";
+                priceDetails = "💲 *VALOR:* A NEGOCIAR (Cliente manifestou interesse em negociar)";
+                productValue = "A negociar";
+            } else {
+                productValue = productPriceValue;
+                
+                if (deliveryType === 'hand') {
+                    shippingValue = 0;
+                    totalPrice = productPriceValue;
+                    priceDetails = `💲 *VALOR TOTAL:* R$ ${totalPrice.toFixed(2).replace('.', ',')}\n   • Produto: R$ ${productValue.toFixed(2).replace('.', ',')}\n   • Entrega: Grátis (entregador)`;
+                } else if (deliveryType === 'sedex') {
+                    shippingValue = shippingCost;
+                    if (shippingCost > 0) {
+                        totalPrice = productPriceValue + shippingCost;
+                        priceDetails = `💲 *VALOR TOTAL:* R$ ${totalPrice.toFixed(2).replace('.', ',')}\n   • Produto: R$ ${productValue.toFixed(2).replace('.', ',')}\n   • Frete SEDEX: R$ ${shippingCost.toFixed(2).replace('.', ',')}\n   • *SOMA:* R$ ${productValue.toFixed(2).replace('.', ',')} + R$ ${shippingCost.toFixed(2).replace('.', ',')} = R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+                    } else {
+                        totalPrice = productPriceValue;
+                        priceDetails = `💲 *VALOR DO PRODUTO:* R$ ${productValue.toFixed(2).replace('.', ',')}\n   • Frete SEDEX: A calcular`;
+                    }
+                }
+            }
+            
             // Informações de entrega
             const deliveryInfo = deliveryType === 'hand' 
                 ? "📦 *ENTREGA:* Receber em mãos (entregador) - SEM TAXA DE ENTREGA"
                 : shippingCost > 0 
-                    ? `📦 *ENTREGA:* Envio via SEDEX - Frete: R$ ${shippingCost.toFixed(2).replace('.', ',')}`
+                    ? `📦 *ENTREGA:* Envio via SEDEX\n   • Valor do Frete: R$ ${shippingCost.toFixed(2).replace('.', ',')}\n   • Prazo: ${document.getElementById('shippingTime').textContent || 'A calcular'}`
                     : "📦 *ENTREGA:* Envio via SEDEX - Frete a calcular";
-            
-            // Informações de preço
-            let priceInfo;
-            if (wantsToNegotiate) {
-                priceInfo = "💲 *VALOR:* A NEGOCIAR (Cliente manifestou interesse em negociar)";
-            } else if (deliveryType === 'sedex' && shippingCost > 0) {
-                const total = productPriceValue + shippingCost;
-                priceInfo = `💲 *VALOR:* Produto: R$ ${productPriceValue.toFixed(2).replace('.', ',')} + Frete: R$ ${shippingCost.toFixed(2).replace('.', ',')} = TOTAL: R$ ${total.toFixed(2).replace('.', ',')}`;
-            } else if (deliveryType === 'sedex') {
-                priceInfo = `💲 *VALOR:* Produto: R$ ${productPriceValue.toFixed(2).replace('.', ',')} + Frete SEDEX (a calcular)`;
-            } else {
-                priceInfo = `💲 *VALOR:* R$ ${productPriceValue.toFixed(2).replace('.', ',')} (entrega grátis por entregador)`;
-            }
             
             const negotiationNote = wantsToNegotiate 
                 ? "\n\n💬 *OBSERVAÇÃO IMPORTANTE:*\nCliente deseja negociar o valor do produto." 
                 : "";
             
-            const previewText = `🤰 *Compra Segura - Misoprostol (Cytotec)*
+            // Cálculo explícito na mensagem quando for SEDEX
+            const totalCalculation = (deliveryType === 'sedex' && shippingCost > 0 && !wantsToNegotiate) 
+                ? `\n🧮 *CÁLCULO DO TOTAL:*\n• Produto: R$ ${productPriceValue.toFixed(2).replace('.', ',')}\n• Frete SEDEX: R$ ${shippingCost.toFixed(2).replace('.', ',')}\n• *TOTAL A PAGAR:* R$ ${(productPriceValue + shippingCost).toFixed(2).replace('.', ',')}`
+                : "";
+            
+            const previewText = `🤰 *COMPRA SEGURA - MISOPROSTOL (CYTOTEC)*
 
 👤 *DADOS DA GESTANTE:*
 • Nome: ${name}
@@ -1253,9 +1281,10 @@
 
 💊 *COMPRIMIDOS RECOMENDADO:*
 • Produto: ${currentProduct.name}
-• ${priceInfo}${negotiationNote}
+${priceDetails}${negotiationNote}
 
 ${deliveryInfo}
+${totalCalculation}
 
 📍 *ENDEREÇO DE ENTREGA:*
 • ${street}, ${number} ${complement ? '- ' + complement : ''}
@@ -1265,6 +1294,7 @@ ${deliveryInfo}
 💳 *PAGAMENTO PIX:*
 • Chave: ${PIX_KEY}
 • Nome: ${PIX_NAME}
+• Valor Total: ${typeof totalPrice === 'number' ? `R$ ${totalPrice.toFixed(2).replace('.', ',')}` : totalPrice}
 
 📝 *OBSERVAÇÕES:*
 ${message || 'Nenhuma observação adicional'}
@@ -1297,7 +1327,9 @@ ${message || 'Nenhuma observação adicional'}
         });
 
         // Botão calcular frete
-        calculateShippingBtn.addEventListener('click', calculateShipping);
+        calculateShippingBtn.addEventListener('click', () => {
+            calculateShipping();
+        });
 
         // Máscaras
         document.getElementById('cpf').addEventListener('input', function(e) {
@@ -1391,12 +1423,13 @@ ${message || 'Nenhuma observação adicional'}
                 return;
             }
             
+            // CORREÇÃO: Validar se frete foi calculado quando for SEDEX
             if (deliveryType === 'sedex' && shippingCost === 0) {
                 showNotification('Calcule o frete SEDEX primeiro', 'error');
                 return;
             }
             
-            const required = ['name', 'email', 'phone', 'cpf', 'street', 'number', 'neighborhood', 'city', 'state'];
+            const required = ['name', 'email', 'phone', 'cpf', 'cep', 'street', 'number', 'neighborhood', 'city', 'state'];
             for (const field of required) {
                 if (!document.getElementById(field).value.trim()) {
                     showNotification('Preencha todos os campos obrigatórios', 'error');
@@ -1425,14 +1458,21 @@ ${message || 'Nenhuma observação adicional'}
             input.addEventListener('input', updateMessagePreview);
         });
 
+        // Atualizar quando opções de entrega mudam
+        document.querySelectorAll('input[name="delivery"]').forEach(radio => {
+            radio.addEventListener('change', updateMessagePreview);
+        });
+
         // Inicializar
         document.addEventListener('DOMContentLoaded', () => {
             initializeDates();
             setupDeliveryOptions();
+            
+            // Mostrar resumo total desde o início
+            totalSummary.classList.remove('hidden');
             
             showNotification('Informe o primeiro dia da sua última menstruação para calcular', 'info');
         });
     </script>
 </body>
 </html>
-
