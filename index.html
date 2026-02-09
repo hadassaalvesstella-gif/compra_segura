@@ -167,49 +167,6 @@
             margin: 5px 0;
         }
 
-        .product-info {
-            background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        .product-price {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin: 8px 0;
-        }
-
-        .product-name {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        .negotiation-checkbox {
-            margin-top: 15px;
-            padding: 10px;
-            background: #fff3cd;
-            border-radius: 6px;
-            border: 1px solid #ffeaa7;
-        }
-
-        .negotiation-checkbox label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #856404;
-            margin: 0;
-        }
-
-        .negotiation-checkbox input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-        }
-
         .delivery-options {
             margin-top: 15px;
             padding: 15px;
@@ -588,6 +545,174 @@
             border-radius: 4px;
             display: inline-block;
         }
+        
+        /* Estilos para a tabela de produtos */
+        .products-table-container {
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        
+        .products-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .products-table th {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .products-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .products-table tr:hover {
+            background-color: #f8f9ff;
+        }
+        
+        .products-table tr.selected {
+            background-color: #e8f4fc;
+            border-left: 4px solid #2575fc;
+        }
+        
+        .product-radio {
+            text-align: center;
+        }
+        
+        .product-radio input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .product-number {
+            font-weight: bold;
+            color: #6a11cb;
+            text-align: center;
+        }
+        
+        .product-price-cell {
+            font-weight: bold;
+            color: #2ecc71;
+            text-align: right;
+        }
+        
+        .product-selection-info {
+            background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .selected-product-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .no-product-selected {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        .product-calculator-box {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #e0e7ff;
+        }
+        
+        .product-calculation {
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .product-calculation-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .product-calculation-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #6a11cb;
+            font-size: 1.1rem;
+        }
+        
+        .product-calculation-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px dashed #ddd;
+        }
+        
+        .pregnancy-info-box {
+            background: #f0f7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #cfe2ff;
+        }
+        
+        .pregnancy-weeks-info {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .pregnancy-weeks-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #6a11cb;
+            margin: 10px 0;
+        }
+        
+        .pregnancy-weeks-label {
+            font-size: 1.1rem;
+            color: #444;
+            font-weight: 600;
+        }
+        
+        .loading-cep {
+            display: none;
+            text-align: center;
+            padding: 10px;
+            color: #3498db;
+        }
+        
+        .loading-cep.show {
+            display: block;
+        }
+        
+        .loading-cep i {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -598,9 +723,9 @@
         </header>
 
         <div class="content">
-            <!-- Calculadora -->
+            <!-- Calculadora e Seleção de Produto -->
             <div class="calculator-container">
-                <h2><i class="fas fa-calculator"></i> Calculadora</h2>
+                <h2><i class="fas fa-calculator"></i> Calculadora de Semanas</h2>
                 
                 <div class="calculator-box">
                     <div class="form-group">
@@ -619,26 +744,73 @@
                     </button>
                 </div>
                 
+                <!-- Resultado das Semanas de Gestação -->
                 <div id="pregnancyResult" class="hidden">
-                    <div class="pregnancy-result">
-                        <div class="weeks-display" id="weeksDisplay">0</div>
-                        <div>Semanas de Gestação</div>
-                        <div style="margin-top: 5px; font-size: 0.9rem;" id="periodDisplay">
-                            Período: <span id="periodRange">0-0 semanas</span>
+                    <div class="pregnancy-info-box">
+                        <div class="pregnancy-weeks-info">
+                            <div class="pregnancy-weeks-number" id="weeksDisplay">0</div>
+                            <div class="pregnancy-weeks-label">Semanas de Gestação</div>
+                            <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+                                Você está com aproximadamente <span id="weeksDisplayText">0</span> semanas de gestação.
+                            </p>
                         </div>
                     </div>
-                    
-                    <div class="product-info">
-                        <div class="product-name" id="productName">Selecione uma data para calcular</div>
-                        <div class="product-price" id="productPrice">R$ 0,00</div>
-                    </div>
-                    
-                    <!-- Checkbox para Negociação -->
-                    <div class="negotiation-checkbox">
-                        <label>
-                            <input type="checkbox" id="negotiateCheckbox">
-                            <i class="fas fa-handshake"></i> Quero Negociar
-                        </label>
+                </div>
+                
+                <!-- Tabela de Produtos -->
+                <div class="section-title" style="margin-top: 20px;">
+                    <i class="fas fa-shopping-cart"></i> Tabela de Preços
+                </div>
+                
+                <div class="products-table-container">
+                    <table class="products-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%; text-align: center;">Escolher</th>
+                                <th style="width: 40%;">Produto</th>
+                                <th style="width: 50%;">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <!-- Produtos serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Informação do Produto Selecionado -->
+                <div id="selectedProductInfo" class="no-product-selected">
+                    <i class="fas fa-info-circle" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                    <p>Selecione a quantidade desejada acima</p>
+                </div>
+                
+                <!-- Cálculo do Produto + Frete -->
+                <div id="productCalculation" class="hidden">
+                    <div class="product-calculator-box">
+                        <h3 style="color: #2c3e50; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-calculator"></i> Cálculo do Pedido
+                        </h3>
+                        
+                        <div class="product-calculation">
+                            <div class="product-calculation-item">
+                                <span>Produto selecionado:</span>
+                                <span id="calcProductName">-</span>
+                            </div>
+                            <div class="product-calculation-item">
+                                <span>Valor do produto:</span>
+                                <span id="calcProductPrice">R$ 0,00</span>
+                            </div>
+                            <div class="product-calculation-item">
+                                <span>Frete SEDEX:</span>
+                                <span id="calcShipping">R$ 0,00</span>
+                            </div>
+                            <div class="product-calculation-item">
+                                <span>Total a pagar:</span>
+                                <span id="calcTotal">R$ 0,00</span>
+                            </div>
+                            <div class="product-calculation-total" id="calcTotalDisplay">
+                                TOTAL: R$ 0,00
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -685,12 +857,15 @@
                     <div class="form-group">
                         <label for="cep">CEP *</label>
                         <div class="cep-search">
-                            <input type="text" id="cep" placeholder="00000-000" required>
+                            <input type="text" id="cep" placeholder="00000-000" required maxlength="9">
                             <button type="button" id="searchCep">
                                 <i class="fas fa-search"></i> Buscar
                             </button>
                         </div>
                         <div class="error-message" id="cepError">CEP inválido</div>
+                        <div class="loading-cep" id="loadingCep">
+                            <i class="fas fa-spinner"></i> Buscando endereço...
+                        </div>
                     </div>
 
                     <div class="row">
@@ -748,7 +923,7 @@
                             </div>
                             <div class="details">
                                 <div class="title">Envio via SEDEX</div>
-                                <div class="description">Entrega pelos Correios - Frete calculado</div>
+                                <div class="description">Entrega pelos Correios - Frete calculado por estado</div>
                             </div>
                         </div>
                     </div>
@@ -763,6 +938,13 @@
                         </div>
                         
                         <div class="form-group">
+                            <label>Destino do Frete:</label>
+                            <div class="shipping-origin">
+                                <i class="fas fa-map-marker-alt"></i> <span id="destinationState">Estado não identificado</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
                             <label>Peso do Pacote (envelope)</label>
                             <input type="text" value="500g (tamanho padrão)" readonly>
                         </div>
@@ -773,7 +955,10 @@
                         
                         <div id="shippingResult" class="shipping-result hidden">
                             <div class="shipping-cost" id="shippingCost">R$ 0,00</div>
-                            <div class="shipping-time" id="shippingTime">Prazo: 0-0 dias úteis</div>
+                            <div class="shipping-time" id="shippingTime">Prazo: 5-12 dias úteis</div>
+                            <div style="font-size: 0.8rem; margin-top: 5px; opacity: 0.9;">
+                                Com margem de segurança de 20%
+                            </div>
                         </div>
                     </div>
 
@@ -782,7 +967,7 @@
                         <h3><i class="fas fa-receipt"></i> Resumo do Valor</h3>
                         <div class="total-amount" id="totalAmount">R$ 0,00</div>
                         <div style="font-size: 0.9rem;" id="summaryDetails">
-                            Produto: R$ 0,00 + Frete: R$ 0,00
+                            Selecione um produto da tabela
                         </div>
                     </div>
 
@@ -791,7 +976,7 @@
                         <h3><i class="fas fa-money-bill-wave"></i> Pagamento via PIX</h3>
                         <div class="pix-details">
                             <div class="pix-item">
-                                <strong>Chave PIX (CNPJ):</strong>
+                                <strong>Chave PIX:</strong>
                                 <span>64172939000116</span>
                             </div>
                             <div class="pix-item">
@@ -828,7 +1013,7 @@
                     <div class="whatsapp-number">
                         <i class="fab fa-whatsapp"></i> (85) 98461-4021
                     </div>
-                    <p style="font-size: 0.85rem;">Segunda a Domingo, 8h às 18h</p>
+                    <p style="font-size: 0.85rem;">Segunda a Sexta, 8h às 18h</p>
                 </div>
                 
                 <div class="instructions">
@@ -870,45 +1055,66 @@
     </div>
 
     <script>
-        const WHATSAPP_NUMBER = "5585984614021"; 
-        const WHATSAPP_DISPLAY = "(85) 98461-4021"; 
+        // Configurações ATUALIZADAS
+        const WHATSAPP_NUMBER = "5585984614021"; // Número atualizado com código do Brasil (55)
+        const WHATSAPP_DISPLAY = "(85) 98461-4021"; // Formatação para exibição
         
-        // Informações atualizadas Solictadas Laís
+        // Informações atualizadas
         const PIX_KEY = "64172939000116";
-        const PIX_NAME = "Carlos Robealdo Carvalho";
-        const ORIGIN_CEP = "04119000"; // São Paulo - SP
+        const PIX_NAME = "Carlos Robealdo";
+        const ORIGIN_CEP = "04119000"; // São Paulo - SP - CEP DE ORIGEM
         
-        // Quantidade de comprimidos sugerido por periodo
-        const PREGNANCY_PRODUCTS = [
-            { minWeeks: 1, maxWeeks: 8, name: "Recomendado 6 comprimidos", price: 950.00 },
-            { minWeeks: 9, maxWeeks: 11, name: "Recomendado 9 comprimidos", price: 1250.00 },
-            { minWeeks: 12, maxWeeks: 14, name: "Recomendado 12 comprimidos", price: 1750.00 },
-            { minWeeks: 15, maxWeeks: 18, name: "Recomendado 14 comprimidos", price: 2150.00 },
-            { minWeeks: 19, maxWeeks: 22, name: "Recomendado 16 comprimidos", price: 2450.00 }
+        // Tabela de produtos atualizada
+        const PRODUCTS = [
+            { id: 1, name: "Quantidade: 1", price: 300.00 },
+            { id: 2, name: "Quantidade: 2", price: 450.00 },
+            { id: 3, name: "Quantidade: 3", price: 600.00 },
+            { id: 4, name: "Quantidade: 4", price: 750.00 },
+            { id: 5, name: "Quantidade: 5", price: 900.00 },
+            { id: 6, name: "Quantidade: 6", price: 950.00 },
+            { id: 7, name: "Quantidade:7", price: 1100.00 },
+            { id: 8, name: "Quantidade: 8", price: 1250.00 },
+            { id: 9, name: "Quantidade: 9", price: 1400.00 },
+            { id: 10, name: "Quantidade: 10", price: 1550.00 },
+            { id: 11, name: "Quantidade: 11", price: 1700.00 },
+            { id: 12, name: "Quantidade: 12", price: 1750.00 },
+            { id: 13, name: "Quantidade: 13", price: 1900.00 },
+            { id: 14, name: "Quantidade: 14", price: 2050.00 },
+            { id: 15, name: "Quantidade: 15", price: 2200.00 },
+            { id: 16, name: "Quantidade: 16", price: 2450.00 }
         ];
 
-        // Tabela de fretes SEDEX
+        // TABELA DE FRETE SEDEX COM MARGEM DE SEGURANÇA (≈20%)
+        // Origem: São Paulo/SP (CEP: 04119-000)
         const SHIPPING_RATES = {
-            'SP': { // São Paulo
-                '01000000-01999999': { cost: 12.00, minDays: 1, maxDays: 2 }, // Centro de SP
-                '02000000-02999999': { cost: 15.00, minDays: 1, maxDays: 3 }, // Zona Norte
-                '03000000-03999999': { cost: 15.00, minDays: 1, maxDays: 3 }, // Zona Leste
-                '04000000-04999999': { cost: 14.00, minDays: 1, maxDays: 2 }, // Zona Sul (inclui 04119)
-                '05000000-05999999': { cost: 16.00, minDays: 1, maxDays: 3 }, // Zona Oeste
-                '06000000-06999999': { cost: 18.00, minDays: 2, maxDays: 4 }, // ABC e região
-                '07000000-07999999': { cost: 20.00, minDays: 2, maxDays: 5 }, // Grande SP Norte
-                '08000000-08999999': { cost: 22.00, minDays: 2, maxDays: 5 }, // Grande SP Sul
-                '09000000-09999999': { cost: 25.00, minDays: 3, maxDays: 6 }, // Litoral
-                'default': { cost: 28.00, minDays: 3, maxDays: 7 } // Demais cidades de SP
-            },
-            'RJ': { cost: 35.00, minDays: 3, maxDays: 7 }, // Rio de Janeiro
-            'MG': { cost: 32.00, minDays: 3, maxDays: 7 }, // Minas Gerais
-            'PR': { cost: 30.00, minDays: 3, maxDays: 6 }, // Paraná
-            'SC': { cost: 38.00, minDays: 4, maxDays: 8 }, // Santa Catarina
-            'RS': { cost: 42.00, minDays: 4, maxDays: 9 }, // Rio Grande do Sul
-            'GO': { cost: 45.00, minDays: 4, maxDays: 9 }, // Goiás
-            'DF': { cost: 40.00, minDays: 4, maxDays: 8 }, // Distrito Federal
-            'default': { cost: 55.00, minDays: 5, maxDays: 12 } // Demais estados
+            'SP': { cost: 30.00, minDays: 1, maxDays: 3 },    // São Paulo
+            'RJ': { cost: 38.00, minDays: 3, maxDays: 5 },    // Rio de Janeiro
+            'MG': { cost: 41.00, minDays: 3, maxDays: 6 },    // Minas Gerais
+            'ES': { cost: 43.00, minDays: 3, maxDays: 6 },    // Espírito Santo
+            'PR': { cost: 46.00, minDays: 3, maxDays: 6 },    // Paraná
+            'SC': { cost: 48.00, minDays: 4, maxDays: 7 },    // Santa Catarina
+            'RS': { cost: 50.00, minDays: 4, maxDays: 8 },    // Rio Grande do Sul
+            'MS': { cost: 53.00, minDays: 5, maxDays: 9 },    // Mato Grosso do Sul
+            'MT': { cost: 58.00, minDays: 5, maxDays: 10 },   // Mato Grosso
+            'GO': { cost: 48.00, minDays: 4, maxDays: 8 },    // Goiás
+            'DF': { cost: 50.00, minDays: 4, maxDays: 8 },    // Distrito Federal
+            'BA': { cost: 58.00, minDays: 5, maxDays: 10 },   // Bahia
+            'SE': { cost: 60.00, minDays: 5, maxDays: 11 },   // Sergipe
+            'AL': { cost: 60.00, minDays: 5, maxDays: 11 },   // Alagoas
+            'PE': { cost: 58.00, minDays: 5, maxDays: 10 },   // Pernambuco
+            'PB': { cost: 63.00, minDays: 6, maxDays: 12 },   // Paraíba
+            'RN': { cost: 65.00, minDays: 6, maxDays: 12 },   // Rio Grande do Norte
+            'CE': { cost: 65.00, minDays: 6, maxDays: 12 },   // Ceará
+            'PI': { cost: 68.00, minDays: 6, maxDays: 13 },   // Piauí
+            'MA': { cost: 70.00, minDays: 7, maxDays: 14 },   // Maranhão
+            'PA': { cost: 72.00, minDays: 7, maxDays: 15 },   // Pará
+            'TO': { cost: 68.00, minDays: 6, maxDays: 13 },   // Tocantins
+            'RO': { cost: 75.00, minDays: 8, maxDays: 16 },   // Rondônia
+            'AC': { cost: 78.00, minDays: 8, maxDays: 17 },   // Acre
+            'AM': { cost: 82.00, minDays: 9, maxDays: 18 },   // Amazonas
+            'RR': { cost: 85.00, minDays: 10, maxDays: 20 },  // Roraima
+            'AP': { cost: 82.00, minDays: 9, maxDays: 18 },   // Amapá
+            'default': { cost: 85.00, minDays: 10, maxDays: 20 } // Demais estados (caso algum não esteja listado)
         };
 
         // Elementos
@@ -918,11 +1124,8 @@
         const pregnancyResult = document.getElementById('pregnancyResult');
         const noDataMessage = document.getElementById('noDataMessage');
         const weeksDisplay = document.getElementById('weeksDisplay');
-        const periodRange = document.getElementById('periodRange');
-        const productName = document.getElementById('productName');
-        const productPrice = document.getElementById('productPrice');
+        const weeksDisplayText = document.getElementById('weeksDisplayText');
         const pixAmountDisplay = document.getElementById('pixAmountDisplay');
-        const negotiateCheckbox = document.getElementById('negotiateCheckbox');
         const customerForm = document.getElementById('customerForm');
         const submitButton = document.getElementById('submitButton');
         const messagePreview = document.getElementById('messagePreview');
@@ -938,15 +1141,31 @@
         const totalSummary = document.getElementById('totalSummary');
         const totalAmount = document.getElementById('totalAmount');
         const summaryDetails = document.getElementById('summaryDetails');
+        const productsTableBody = document.getElementById('productsTableBody');
+        const selectedProductInfo = document.getElementById('selectedProductInfo');
+        const productCalculation = document.getElementById('productCalculation');
+        const calcProductName = document.getElementById('calcProductName');
+        const calcProductPrice = document.getElementById('calcProductPrice');
+        const calcShipping = document.getElementById('calcShipping');
+        const calcTotal = document.getElementById('calcTotal');
+        const calcTotalDisplay = document.getElementById('calcTotalDisplay');
+        const loadingCep = document.getElementById('loadingCep');
+        const destinationStateElement = document.getElementById('destinationState');
+        
+        // Elementos do endereço
+        const cepInput = document.getElementById('cep');
+        const streetInput = document.getElementById('street');
+        const neighborhoodInput = document.getElementById('neighborhood');
+        const cityInput = document.getElementById('city');
+        const stateInput = document.getElementById('state');
         
         // Variáveis
         let currentWeeks = 0;
-        let currentProduct = null;
-        let wantsToNegotiate = false;
         let deliveryType = 'hand'; // 'hand' ou 'sedex'
         let shippingCost = 0;
-        let productPriceValue = 0;
         let totalValue = 0;
+        let selectedTableProduct = null; // Produto selecionado na tabela
+        let currentState = ''; // Estado atual do cliente
 
         // Inicializar datas
         function initializeDates() {
@@ -958,6 +1177,106 @@
             
             noDataMessage.classList.remove('hidden');
             pregnancyResult.classList.add('hidden');
+        }
+
+        // Criar tabela de produtos
+        function createProductsTable() {
+            productsTableBody.innerHTML = '';
+            
+            PRODUCTS.forEach(product => {
+                const row = document.createElement('tr');
+                row.dataset.productId = product.id;
+                
+                row.innerHTML = `
+                    <td class="product-radio">
+                        <input type="radio" name="selectedProduct" id="product${product.id}" value="${product.id}">
+                    </td>
+                    <td class="product-number">${product.name}</td>
+                    <td class="product-price-cell">R$ ${product.price.toFixed(2).replace('.', ',')}</td>
+                `;
+                
+                // Adicionar evento de clique na linha inteira
+                row.addEventListener('click', (e) => {
+                    if (e.target.type !== 'radio') {
+                        const radio = row.querySelector('input[type="radio"]');
+                        radio.checked = !radio.checked;
+                        if (radio.checked) {
+                            radio.dispatchEvent(new Event('change'));
+                        }
+                    }
+                });
+                
+                // Adicionar evento de change no radio
+                const radio = row.querySelector('input[type="radio"]');
+                radio.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Remover seleção de outras linhas
+                        document.querySelectorAll('#productsTableBody tr').forEach(tr => {
+                            tr.classList.remove('selected');
+                        });
+                        
+                        // Adicionar seleção na linha atual
+                        row.classList.add('selected');
+                        
+                        // Atualizar produto selecionado
+                        selectedTableProduct = product;
+                        updateSelectedProductInfo();
+                        updateProductCalculation();
+                        updateTotalSummary();
+                        updateMessagePreview();
+                        
+                        showNotification(` ${product.id} selecionado: R$ ${product.price.toFixed(2)}`, 'success');
+                    }
+                });
+                
+                productsTableBody.appendChild(row);
+            });
+        }
+
+        // Atualizar informações do produto selecionado
+        function updateSelectedProductInfo() {
+            if (!selectedTableProduct) {
+                selectedProductInfo.innerHTML = `
+                    <i class="fas fa-info-circle" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                    <p>Selecione um produto da tabela acima</p>
+                `;
+                selectedProductInfo.className = 'no-product-selected';
+                productCalculation.classList.add('hidden');
+                return;
+            }
+            
+            selectedProductInfo.innerHTML = `
+                <div class="selected-product-display">
+                    <i class="fas fa-check-circle"></i> ${selectedTableProduct.name}
+                </div>
+                <div style="font-size: 1.5rem; font-weight: bold; margin: 5px 0;">
+                    R$ ${selectedTableProduct.price.toFixed(2).replace('.', ',')}
+                </div>
+                <p style="font-size: 0.9rem; margin-top: 5px;">
+                    Você escolheu ${selectedTableProduct.name}
+                </p>
+            `;
+            selectedProductInfo.className = 'product-selection-info';
+            productCalculation.classList.remove('hidden');
+        }
+
+        // Atualizar cálculo do produto
+        function updateProductCalculation() {
+            if (!selectedTableProduct) return;
+            
+            calcProductName.textContent = selectedTableProduct.name;
+            calcProductPrice.textContent = `R$ ${selectedTableProduct.price.toFixed(2).replace('.', ',')}`;
+            
+            // Atualizar shipping cost se já calculado
+            const shippingValue = deliveryType === 'sedex' ? shippingCost : 0;
+            calcShipping.textContent = deliveryType === 'sedex' && shippingCost > 0 
+                ? `R$ ${shippingCost.toFixed(2).replace('.', ',')}` 
+                : deliveryType === 'sedex' ? 'A calcular' : 'Grátis';
+            
+            // Calcular total
+            const total = selectedTableProduct.price + (deliveryType === 'sedex' ? shippingCost : 0);
+            calcTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            calcTotalDisplay.textContent = `TOTAL: R$ ${total.toFixed(2).replace('.', ',')}`;
         }
 
         // Configurar opções de entrega
@@ -975,20 +1294,30 @@
                     deliveryType = this.dataset.type;
                     
                     if (deliveryType === 'sedex') {
-                        shippingCalculation.classList.remove('hidden');
+                        // Verificar se CEP já foi preenchido
+                        const cep = cepInput.value.replace(/\D/g, '');
+                        if (cep.length === 8 && streetInput.value.trim() !== '') {
+                            shippingCalculation.classList.remove('hidden');
+                            // Atualizar destino do frete
+                            destinationStateElement.textContent = `${currentState} - ${stateInput.value}`;
+                        } else {
+                            showNotification('Preencha o CEP primeiro para calcular o frete SEDEX', 'info');
+                        }
                         shippingResult.classList.add('hidden');
                     } else {
                         shippingCalculation.classList.add('hidden');
                         shippingResult.classList.add('hidden');
+                        shippingCost = 0;
                     }
                     
+                    updateProductCalculation();
                     updateTotalSummary();
                     updateMessagePreview();
                 });
             });
         }
 
-        // Calcular semanas - ocutar data atual (Como solicitado) 
+        // Calcular semanas de gestação (SIMPLIFICADO)
         function calculatePregnancyWeeks() {
             if (!lastPeriodInput.value) {
                 showNotification('Informe a data da sua última menstruação', 'error');
@@ -1008,59 +1337,103 @@
             const weeks = Math.floor(diffDays / 7);
             
             if (weeks > 42) {
-                showNotification('Por favor, consulte seu médico. Período superior a 42 semanas.', 'info');
+                showNotification('Não aconselhamos o Misoprostol com período superior a 22 semanas.', 'info');
                 return false;
             }
             
             return weeks;
         }
 
-        // Encontrar produto
-        function findProductForWeeks(weeks) {
-            const effectiveWeeks = weeks === 0 ? 1 : weeks;
-            return PREGNANCY_PRODUCTS.find(p => 
-                effectiveWeeks >= p.minWeeks && effectiveWeeks <= p.maxWeeks
-            ) || PREGNANCY_PRODUCTS[0];
-        }
-
-        // Atualizar display
-        function updateCalculatorDisplay(weeks, product) {
+        // Atualizar display das semanas
+        function updateWeeksDisplay(weeks) {
             currentWeeks = weeks;
-            currentProduct = product;
-            productPriceValue = product.price;
             
             weeksDisplay.textContent = weeks;
-            periodRange.textContent = `${product.minWeeks}-${product.maxWeeks} semanas`;
-            productName.textContent = product.name;
-            
-            wantsToNegotiate = negotiateCheckbox.checked;
-            
-            if (wantsToNegotiate) {
-                productPrice.textContent = "Valor a negociar";
-                productPrice.style.fontSize = "1.4rem";
-            } else {
-                productPrice.textContent = `R$ ${product.price.toFixed(2).replace('.', ',')}`;
-                productPrice.style.fontSize = "1.8rem";
-            }
+            weeksDisplayText.textContent = weeks;
             
             noDataMessage.classList.add('hidden');
             pregnancyResult.classList.remove('hidden');
             
-            updateTotalSummary();
-            updateMessagePreview();
-            showNotification(`${weeks} semanas calculadas - ${product.name}`, 'success');
+            showNotification(`${weeks} semanas calculadas!`, 'success');
         }
 
-        // Calcular frete SEDEX
+        // Validar CEP
+        function validateCEP(cep) {
+            return cep.replace(/[^\d]+/g, '').length === 8;
+        }
+
+        // Buscar CEP
+        async function fetchAddressByCEP(cep) {
+            const cleanCEP = cep.replace(/\D/g, '');
+            if (cleanCEP.length !== 8) return null;
+            
+            try {
+                // Usar a API ViaCEP
+                const response = await fetch(`https://viacep.com.br/ws/${cleanCEP}/json/`);
+                const data = await response.json();
+                
+                if (data.erro) {
+                    return null;
+                }
+                
+                return {
+                    logradouro: data.logradouro || '',
+                    bairro: data.bairro || '',
+                    localidade: data.localidade || '',
+                    uf: data.uf || ''
+                };
+            } catch (error) {
+                console.error('Erro ao buscar CEP:', error);
+                return null;
+            }
+        }
+
+        // Preencher endereço com dados da API
+        function fillAddress(data) {
+            streetInput.value = data.logradouro || '';
+            neighborhoodInput.value = data.bairro || '';
+            cityInput.value = data.localidade || '';
+            stateInput.value = data.uf || '';
+            currentState = data.uf || '';
+            
+            // Atualizar destino do frete
+            if (data.uf) {
+                destinationStateElement.textContent = `${getStateName(data.uf)} - ${data.uf}`;
+            }
+            
+            // Habilitar o botão de calcular frete se SEDEX estiver selecionado
+            if (deliveryType === 'sedex') {
+                shippingCalculation.classList.remove('hidden');
+            }
+            
+            updateMessagePreview();
+            showNotification('Endereço encontrado!', 'success');
+        }
+
+        // Obter nome completo do estado
+        function getStateName(uf) {
+            const states = {
+                'AC': 'Acre', 'AL': 'Alagoas', 'AP': 'Amapá', 'AM': 'Amazonas',
+                'BA': 'Bahia', 'CE': 'Ceará', 'DF': 'Distrito Federal', 'ES': 'Espírito Santo',
+                'GO': 'Goiás', 'MA': 'Maranhão', 'MT': 'Mato Grosso', 'MS': 'Mato Grosso do Sul',
+                'MG': 'Minas Gerais', 'PA': 'Pará', 'PB': 'Paraíba', 'PR': 'Paraná',
+                'PE': 'Pernambuco', 'PI': 'Piauí', 'RJ': 'Rio de Janeiro', 'RN': 'Rio Grande do Norte',
+                'RS': 'Rio Grande do Sul', 'RO': 'Rondônia', 'RR': 'Roraima', 'SC': 'Santa Catarina',
+                'SP': 'São Paulo', 'SE': 'Sergipe', 'TO': 'Tocantins'
+            };
+            return states[uf] || uf;
+        }
+
+        // Calcular frete SEDEX - USANDO A TABELA EXATA FORNECIDA
         function calculateShipping() {
-            const cep = document.getElementById('cep').value.replace(/\D/g, '');
+            const cep = cepInput.value.replace(/\D/g, '');
             
             if (!cep || cep.length !== 8) {
                 showNotification('Informe um CEP válido para calcular o frete', 'error');
                 return;
             }
             
-            const state = document.getElementById('state').value.toUpperCase();
+            const state = stateInput.value.toUpperCase();
             
             if (!state || state.length !== 2) {
                 showNotification('Informe o estado para calcular o frete', 'error');
@@ -1071,27 +1444,13 @@
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calculando...';
             btn.disabled = true;
             
+            // Simular cálculo baseado no estado de destino
             setTimeout(() => {
+                // Buscar o valor do frete na tabela
                 let shippingRate;
                 
                 if (SHIPPING_RATES[state]) {
-                    if (typeof SHIPPING_RATES[state] === 'object' && !SHIPPING_RATES[state].cost) {
-                        const cepNum = parseInt(cep);
-                        for (const range in SHIPPING_RATES[state]) {
-                            if (range.includes('-')) {
-                                const [min, max] = range.split('-').map(num => parseInt(num));
-                                if (cepNum >= min && cepNum <= max) {
-                                    shippingRate = SHIPPING_RATES[state][range];
-                                    break;
-                                }
-                            }
-                        }
-                        if (!shippingRate) {
-                            shippingRate = SHIPPING_RATES[state].default;
-                        }
-                    } else {
-                        shippingRate = SHIPPING_RATES[state];
-                    }
+                    shippingRate = SHIPPING_RATES[state];
                 } else {
                     shippingRate = SHIPPING_RATES.default;
                 }
@@ -1106,49 +1465,47 @@
                 btn.innerHTML = '<i class="fas fa-calculator"></i> Calcular Frete SEDEX';
                 btn.disabled = false;
                 
+                updateProductCalculation();
                 updateTotalSummary();
-                showNotification(`Frete calculado: R$ ${shippingCost.toFixed(2)}`, 'success');
+                
+                const stateName = getStateName(state);
+                showNotification(`Frete calculado para ${stateName}: R$ ${shippingCost.toFixed(2)}`, 'success');
             }, 1500);
         }
 
-        // Atualizar resumo total - CORRIGIDO
+        // Atualizar resumo total
         function updateTotalSummary() {
-            if (!currentProduct) {
+            if (!selectedTableProduct) {
                 totalAmount.textContent = "R$ 0,00";
                 pixAmountDisplay.textContent = "R$ 0,00";
-                summaryDetails.textContent = "Produto: R$ 0,00 + Frete: R$ 0,00";
+                summaryDetails.textContent = "Selecione um produto da tabela";
                 return;
             }
             
-            // Calcular total CORRETAMENTE
-            if (wantsToNegotiate) {
-                totalValue = 0;
-                totalAmount.textContent = "Valor a negociar";
-                totalAmount.style.fontSize = "1.6rem";
-                pixAmountDisplay.textContent = "Valor a negociar";
-                summaryDetails.textContent = "Produto: A negociar + Frete: Não aplicável";
-            } else {
-                let details;
-                let productText = `Produto: R$ ${productPriceValue.toFixed(2).replace('.', ',')}`;
-                
-                if (deliveryType === 'sedex') {
-                    if (shippingCost > 0) {
-                        totalValue = productPriceValue + shippingCost;
-                        details = `${productText} + Frete: R$ ${shippingCost.toFixed(2).replace('.', ',')} = R$ ${totalValue.toFixed(2).replace('.', ',')}`;
-                    } else {
-                        totalValue = productPriceValue;
-                        details = `${productText} + Frete: A calcular`;
-                    }
+            // Calcular total
+            const productValue = selectedTableProduct.price;
+            let total;
+            let details;
+            
+            if (deliveryType === 'sedex') {
+                if (shippingCost > 0) {
+                    total = productValue + shippingCost;
+                    details = `Produto: R$ ${productValue.toFixed(2).replace('.', ',')} + Frete: R$ ${shippingCost.toFixed(2).replace('.', ',')} = Total: R$ ${total.toFixed(2).replace('.', ',')}`;
                 } else {
-                    totalValue = productPriceValue;
-                    details = `${productText} + Entrega: Grátis`;
+                    total = productValue;
+                    details = `Produto: R$ ${productValue.toFixed(2).replace('.', ',')} + Frete: A calcular`;
                 }
-                
-                totalAmount.textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`;
-                totalAmount.style.fontSize = "2rem";
-                pixAmountDisplay.textContent = `R$ ${totalValue.toFixed(2).replace('.', ',')}`;
-                summaryDetails.textContent = details;
+            } else {
+                total = productValue;
+                details = `Produto: R$ ${productValue.toFixed(2).replace('.', ',')} + Entrega: Grátis = Total: R$ ${total.toFixed(2).replace('.', ',')}`;
             }
+            
+            totalAmount.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            totalAmount.style.fontSize = "2rem";
+            pixAmountDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            summaryDetails.textContent = details;
+            
+            totalValue = total;
         }
 
         // Validar CPF
@@ -1169,26 +1526,6 @@
             return remainder === parseInt(cpf[10]);
         }
 
-        // Validar CEP
-        function validateCEP(cep) {
-            return cep.replace(/[^\d]+/g, '').length === 8;
-        }
-
-        // Buscar CEP
-        async function fetchAddressByCEP(cep) {
-            const cleanCEP = cep.replace(/[^\d]+/g, '');
-            if (cleanCEP.length !== 8) return null;
-            
-            try {
-                const response = await fetch(`https://viacep.com.br/ws/${cleanCEP}/json/`);
-                const data = await response.json();
-                return data.erro ? null : data;
-            } catch (error) {
-                console.error('Erro:', error);
-                return null;
-            }
-        }
-
         // Notificação
         function showNotification(message, type = 'success') {
             const notification = document.createElement('div');
@@ -1202,9 +1539,9 @@
             setTimeout(() => notification.remove(), 3000);
         }
 
-        // Atualizar preview da mensagem - CORRIGIDO (Anteriormente estava dando erro no calculo)
+        // Atualizar preview da mensagem
         function updateMessagePreview() {
-            if (!currentProduct) {
+            if (!selectedTableProduct) {
                 messagePreview.textContent = "Informe os dados para ver o preview do pedido...";
                 return;
             }
@@ -1222,69 +1559,42 @@
             const state = document.getElementById('state').value || '[Não informado]';
             const message = document.getElementById('message').value || '';
             
-            // Calcular TOTAL CORRETO com frete
-            let totalPrice;
-            let priceDetails;
-            let productValue;
-            let shippingValue = 0;
-            
-            if (wantsToNegotiate) {
-                totalPrice = "VALOR A NEGOCIAR";
-                priceDetails = "💲 *VALOR:* A NEGOCIAR (Cliente manifestou interesse em negociar)";
-                productValue = "A negociar";
-            } else {
-                productValue = productPriceValue;
-                
-                if (deliveryType === 'hand') {
-                    shippingValue = 0;
-                    totalPrice = productPriceValue;
-                    priceDetails = `💲 *VALOR TOTAL:* R$ ${totalPrice.toFixed(2).replace('.', ',')}\n   • Produto: R$ ${productValue.toFixed(2).replace('.', ',')}\n   • Entrega: Grátis (entregador)`;
-                } else if (deliveryType === 'sedex') {
-                    shippingValue = shippingCost;
-                    if (shippingCost > 0) {
-                        totalPrice = productPriceValue + shippingCost;
-                        priceDetails = `💲 *VALOR TOTAL:* R$ ${totalPrice.toFixed(2).replace('.', ',')}\n   • Produto: R$ ${productValue.toFixed(2).replace('.', ',')}\n   • Frete SEDEX: R$ ${shippingCost.toFixed(2).replace('.', ',')}\n   • *SOMA:* R$ ${productValue.toFixed(2).replace('.', ',')} + R$ ${shippingCost.toFixed(2).replace('.', ',')} = R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
-                    } else {
-                        totalPrice = productPriceValue;
-                        priceDetails = `💲 *VALOR DO PRODUTO:* R$ ${productValue.toFixed(2).replace('.', ',')}\n   • Frete SEDEX: A calcular`;
-                    }
-                }
-            }
+            // Calcular total
+            const productValue = selectedTableProduct.price;
+            const shippingValue = deliveryType === 'sedex' ? shippingCost : 0;
+            const total = productValue + shippingValue;
             
             // Informações de entrega
             const deliveryInfo = deliveryType === 'hand' 
                 ? "📦 *ENTREGA:* Receber em mãos (entregador) - SEM TAXA DE ENTREGA"
                 : shippingCost > 0 
-                    ? `📦 *ENTREGA:* Envio via SEDEX\n   • Valor do Frete: R$ ${shippingCost.toFixed(2).replace('.', ',')}\n   • Prazo: ${document.getElementById('shippingTime').textContent || 'A calcular'}`
+                    ? `📦 *ENTREGA:* Envio via SEDEX\n   • Valor do Frete: R$ ${shippingCost.toFixed(2).replace('.', ',')}\n   • Prazo: ${document.getElementById('shippingTime').textContent || 'A calcular'}\n   • Origem: São Paulo/SP (CEP: 04119-000)\n   • Destino: ${state} - ${getStateName(state)}`
                     : "📦 *ENTREGA:* Envio via SEDEX - Frete a calcular";
             
-            const negotiationNote = wantsToNegotiate 
-                ? "\n\n💬 *OBSERVAÇÃO IMPORTANTE:*\nCliente deseja negociar o valor do produto." 
-                : "";
+            // Adicionar semanas de gestação se calculado
+            const pregnancyInfo = currentWeeks > 0 
+                ? `\n🤰 *INFORMAÇÕES DA GESTAÇÃO:*\n• Semanas de gestação: ${currentWeeks} semanas`
+                : '';
             
-            // Cálculo explícito na mensagem quando for SEDEX
-            const totalCalculation = (deliveryType === 'sedex' && shippingCost > 0 && !wantsToNegotiate) 
-                ? `\n🧮 *CÁLCULO DO TOTAL:*\n• Produto: R$ ${productPriceValue.toFixed(2).replace('.', ',')}\n• Frete SEDEX: R$ ${shippingCost.toFixed(2).replace('.', ',')}\n• *TOTAL A PAGAR:* R$ ${(productPriceValue + shippingCost).toFixed(2).replace('.', ',')}`
-                : "";
-            
-            const previewText = `🤰 *COMPRA SEGURA - MISOPROSTOL (CYTOTEC)*
+            const previewText = `🛒 *COMPRA SEGURA - MISOPROSTOL (CYTOTEC)*
 
-👤 *DADOS DA GESTANTE:*
+👤 *DADOS DO CLIENTE:*
 • Nome: ${name}
 • Email: ${email}
 • WhatsApp: ${phone}
 • CPF: ${cpf}
+${pregnancyInfo}
 
-📅 *INFORMAÇÕES DA GESTAÇÃO:*
-• Semanas de gestação: ${currentWeeks} semanas
-• Período: ${currentProduct.minWeeks}-${currentProduct.maxWeeks} semanas
+🛍️ *PRODUTO SELECIONADO:*
+• ${selectedTableProduct.name}
+• Valor: R$ ${productValue.toFixed(2).replace('.', ',')}
 
-💊 *COMPRIMIDOS RECOMENDADO:*
-• Produto: ${currentProduct.name}
-${priceDetails}${negotiationNote}
+🧮 *CÁLCULO DO PEDIDO:*
+• Produto: R$ ${productValue.toFixed(2).replace('.', ',')}
+• Frete: ${deliveryType === 'sedex' && shippingCost > 0 ? `R$ ${shippingValue.toFixed(2).replace('.', ',')}` : deliveryType === 'sedex' ? 'A calcular' : 'Grátis'}
+• *TOTAL A PAGAR:* R$ ${total.toFixed(2).replace('.', ',')}
 
 ${deliveryInfo}
-${totalCalculation}
 
 📍 *ENDEREÇO DE ENTREGA:*
 • ${street}, ${number} ${complement ? '- ' + complement : ''}
@@ -1294,7 +1604,7 @@ ${totalCalculation}
 💳 *PAGAMENTO PIX:*
 • Chave: ${PIX_KEY}
 • Nome: ${PIX_NAME}
-• Valor Total: ${typeof totalPrice === 'number' ? `R$ ${totalPrice.toFixed(2).replace('.', ',')}` : totalPrice}
+• Valor Total: R$ ${total.toFixed(2).replace('.', ',')}
 
 📝 *OBSERVAÇÕES:*
 ${message || 'Nenhuma observação adicional'}
@@ -1315,14 +1625,8 @@ ${message || 'Nenhuma observação adicional'}
         calculateBtn.addEventListener('click', () => {
             const weeks = calculatePregnancyWeeks();
             if (weeks !== false) {
-                updateCalculatorDisplay(weeks, findProductForWeeks(weeks));
-            }
-        });
-
-        // Checkbox de negociação
-        negotiateCheckbox.addEventListener('change', () => {
-            if (currentProduct) {
-                updateCalculatorDisplay(currentWeeks, currentProduct);
+                updateWeeksDisplay(weeks);
+                updateMessagePreview();
             }
         });
 
@@ -1352,7 +1656,8 @@ ${message || 'Nenhuma observação adicional'}
             e.target.value = value;
         });
 
-        document.getElementById('cep').addEventListener('input', function(e) {
+        // Máscara e autocomplete do CEP
+        cepInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length <= 8) {
                 if (value.length > 5) value = value.replace(/(\d{5})(\d)/, '$1-$2');
@@ -1360,39 +1665,51 @@ ${message || 'Nenhuma observação adicional'}
             e.target.value = value;
         });
 
-        // Buscar CEP
+        // Buscar CEP pelo botão
         searchCepBtn.addEventListener('click', async function() {
-            const cep = document.getElementById('cep').value;
+            const cep = cepInput.value;
             if (!validateCEP(cep)) {
                 showNotification('Digite um CEP válido (8 números)', 'error');
                 return;
             }
             
-            const btn = this;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            btn.disabled = true;
+            loadingCep.classList.add('show');
+            this.disabled = true;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
             
             try {
                 const data = await fetchAddressByCEP(cep);
                 if (data) {
-                    document.getElementById('street').value = data.logradouro || '';
-                    document.getElementById('neighborhood').value = data.bairro || '';
-                    document.getElementById('city').value = data.localidade || '';
-                    document.getElementById('state').value = data.uf || '';
-                    showNotification('Endereço encontrado!', 'success');
-                    
-                    if (deliveryType === 'sedex') {
-                        shippingCalculation.classList.remove('hidden');
-                    }
+                    fillAddress(data);
                 } else {
-                    showNotification('CEP não encontrado', 'error');
+                    showNotification('CEP não encontrado. Preencha manualmente.', 'error');
                 }
             } catch (error) {
-                showNotification('Erro na busca', 'error');
+                showNotification('Erro ao buscar endereço', 'error');
+                console.error('Erro:', error);
             } finally {
-                btn.innerHTML = '<i class="fas fa-search"></i> Buscar';
-                btn.disabled = false;
-                updateMessagePreview();
+                loadingCep.classList.remove('show');
+                this.disabled = false;
+                this.innerHTML = '<i class="fas fa-search"></i> Buscar';
+            }
+        });
+
+        // Buscar CEP automaticamente ao digitar 8 números
+        cepInput.addEventListener('blur', async function() {
+            const cep = cepInput.value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                loadingCep.classList.add('show');
+                
+                try {
+                    const data = await fetchAddressByCEP(cep);
+                    if (data) {
+                        fillAddress(data);
+                    }
+                } catch (error) {
+                    console.error('Erro ao buscar CEP:', error);
+                } finally {
+                    loadingCep.classList.remove('show');
+                }
             }
         });
 
@@ -1418,12 +1735,12 @@ ${message || 'Nenhuma observação adicional'}
         customerForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            if (!currentProduct) {
-                showNotification('Calcule as semanas primeiro', 'error');
+            if (!selectedTableProduct) {
+                showNotification('Selecione um produto da tabela', 'error');
                 return;
             }
             
-            // CORREÇÃO: Validar se frete foi calculado quando for SEDEX
+            // Validar se frete foi calculado quando for SEDEX
             if (deliveryType === 'sedex' && shippingCost === 0) {
                 showNotification('Calcule o frete SEDEX primeiro', 'error');
                 return;
@@ -1467,11 +1784,12 @@ ${message || 'Nenhuma observação adicional'}
         document.addEventListener('DOMContentLoaded', () => {
             initializeDates();
             setupDeliveryOptions();
+            createProductsTable();
             
             // Mostrar resumo total desde o início
             totalSummary.classList.remove('hidden');
             
-            showNotification('Informe o primeiro dia da sua última menstruação para calcular', 'info');
+            showNotification('Selecione um produto da tabela para iniciar seu pedido', 'info');
         });
     </script>
 </body>
